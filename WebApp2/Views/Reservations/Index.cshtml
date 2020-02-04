@@ -1,0 +1,28 @@
+@{
+    Layout = "_Layout";
+}
+@using WebApp2.Models;
+@model List<WebApp2.Models.Reservation>;
+
+@if (User.Identity.IsAuthenticated)
+{
+  @if (@Model.Count == 0)
+  {
+    <h3>No reservations have been added yet!</h3>
+  } 
+  @foreach (Reservation reservation in Model)
+  {
+    <h3>Name: @Html.ActionLink($"{reservation.Nickname} | Event: {reservation.Event.EventTitle}", "Details", new { id = reservation.ReservationId })</h3>
+  }
+      
+
+ 
+}
+else
+{
+  <h3>Please log in or register in order to access.</h3>
+  
+}
+<br>
+<h4>@Html.ActionLink("New RSVP", "Create")</h4>
+<h4>@Html.ActionLink("Home", "Index", "Home")</h4>

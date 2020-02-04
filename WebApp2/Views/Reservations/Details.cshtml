@@ -1,0 +1,24 @@
+@* @{
+  Layout = "_Layout";
+}
+
+@model WebApp2.Models.Reservation;
+
+<h1>Reservation Details for <b>@Html.DisplayFor(model => model.Nickname)</b></h1>
+<br>
+
+@if(@Model.Events.Count == 0)
+{
+  <h3>This user does not contain any reservations</h3>
+}
+else
+{
+  <h3>Reservations under this user:</h3>
+  @foreach(var join in Model.Events)
+    {
+      <h3><b>@join.Event.EventTitle</b></h3>
+      
+    }
+  
+}
+<h4>@Html.ActionLink("Back to reservations", "Index")</h4> *@

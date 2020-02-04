@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApp2.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApp2.Models;
 
 namespace WebApp2
 {
@@ -39,7 +40,7 @@ namespace WebApp2
                 .AddDbContext<ApplicationDbContext>(options => options
                 .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

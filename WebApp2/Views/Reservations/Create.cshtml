@@ -1,0 +1,29 @@
+@{
+    Layout = "_Layout";
+}
+@model WebApp2.Models.Reservation
+@if (User.Identity.IsAuthenticated)
+{
+
+  <h1>New RSVP for @Html.DisplayFor(model => model.EventTitle)</h1>
+  @using (Html.BeginForm())
+  {
+      @Html.Label("Nickname")
+      @Html.TextBoxFor(model => model.Nickname)
+      @* @Html.HiddenFor(model => model.EventId) *@
+      @Html.Label("Select Event")
+      @Html.DropDownList("EventId")
+      @Html.Label("Song Request")
+      @Html.TextBoxFor(model => model.SongRequest)
+      @Html.Label("DrinkRequest")
+      @Html.TextBoxFor(model => model.DrinkRequest)
+      @Html.Label("SpecialRequest")
+      @Html.TextBoxFor(model => model.SpecialRequest)
+      <input type="submit" value="Confirm RSVP" />
+  }
+}
+else
+{
+  <h3>Please log in or register in order to reserve.</h3>
+  
+}
