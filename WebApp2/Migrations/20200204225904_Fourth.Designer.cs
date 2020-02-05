@@ -9,8 +9,8 @@ using WebApp2.Data;
 namespace WebApp2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200204001730_Initial")]
-    partial class Initial
+    [Migration("20200204225904_Fourth")]
+    partial class Fourth
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -185,11 +185,15 @@ namespace WebApp2.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<int>("Date");
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Dj");
 
                     b.Property<string>("EventTitle");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("Location");
+
+                    b.Property<string>("Video");
 
                     b.HasKey("EventId");
 
@@ -201,44 +205,44 @@ namespace WebApp2.Migrations
                         new
                         {
                             EventId = 1,
-                            Date = 0,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Matilda",
-                            UserId = 0
+                            Video = "https://www.youtube.com/embed/uPlmijjHRvw"
                         },
                         new
                         {
                             EventId = 2,
-                            Date = 0,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Rexie",
-                            UserId = 0
+                            Video = "https://www.youtube.com/embed/opXnPgW8FdY"
                         },
                         new
                         {
                             EventId = 3,
-                            Date = 0,
-                            EventTitle = "Matilda",
-                            UserId = 0
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventTitle = "Ohm",
+                            Video = "https://www.youtube.com/embed/bzlMCtirKRU"
                         },
                         new
                         {
                             EventId = 4,
-                            Date = 0,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Pip",
-                            UserId = 0
+                            Video = "https://www.youtube.com/embed/bzlMCtirKRU"
                         },
                         new
                         {
                             EventId = 5,
-                            Date = 0,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Bartholomew",
-                            UserId = 0
+                            Video = "https://www.youtube.com/embed/rD_iJSEBBmE"
                         },
                         new
                         {
                             EventId = 6,
-                            Date = 0,
-                            EventTitle = "Bartholomew",
-                            UserId = 0
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventTitle = "Alpha",
+                            Video = "https://www.youtube.com/embed/vALaiN71aVI"
                         });
                 });
 
@@ -247,13 +251,13 @@ namespace WebApp2.Migrations
                     b.Property<int>("ReservationId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ApplicationUserId");
+
                     b.Property<string>("DrinkRequest");
 
                     b.Property<int>("EventId");
 
                     b.Property<string>("EventTitle");
-
-                    b.Property<string>("Nickname");
 
                     b.Property<string>("SongRequest");
 
@@ -262,6 +266,8 @@ namespace WebApp2.Migrations
                     b.Property<int>("UserId");
 
                     b.HasKey("ReservationId");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("EventId");
 
@@ -340,6 +346,10 @@ namespace WebApp2.Migrations
 
             modelBuilder.Entity("WebApp2.Models.Reservation", b =>
                 {
+                    b.HasOne("WebApp2.Models.ApplicationUser")
+                        .WithMany("Reservations")
+                        .HasForeignKey("ApplicationUserId");
+
                     b.HasOne("WebApp2.Models.Event", "Event")
                         .WithMany()
                         .HasForeignKey("EventId")
@@ -349,7 +359,7 @@ namespace WebApp2.Migrations
             modelBuilder.Entity("WebApp2.Models.ReservationEvent", b =>
                 {
                     b.HasOne("WebApp2.Models.Event", "Event")
-                        .WithMany("Reservations")
+                        .WithMany()
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade);
 

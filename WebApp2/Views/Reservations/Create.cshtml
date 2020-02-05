@@ -5,12 +5,10 @@
 @if (User.Identity.IsAuthenticated)
 {
 
-  <h1>New RSVP for @Html.DisplayFor(model => model.EventTitle)</h1>
+  <h1>New RSVP</h1>
   @using (Html.BeginForm())
   {
-      @Html.Label("Nickname")
-      @Html.TextBoxFor(model => model.Nickname)
-      @* @Html.HiddenFor(model => model.EventId) *@
+      
       @Html.Label("Select Event")
       @Html.DropDownList("EventId")
       @Html.Label("Song Request")

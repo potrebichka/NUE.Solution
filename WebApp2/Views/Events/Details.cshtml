@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model WebApp2.Models.Event;
+
+<h1><b>@Html.DisplayFor(model => model.EventTitle) Details</b></h1>
+<br>
+<h3>Date <b>@Html.DisplayFor(model => model.Date)</b></h3>
+<h3>Location <b>@Html.DisplayFor(model => model.Location)</b></h3>
+<h3>Dj <b>@Html.DisplayFor(model => model.Dj)</b></h3>
+
+<br>
+<h4>@Html.ActionLink("RSVP", "Create", "Reservations")</h4>
+<h4>@Html.ActionLink("Back to event overview", "Index")</h4>
+<h4>@Html.ActionLink("Edit Event", "Edit", new { id = Model.EventId })</h4>
+<h4>@Html.ActionLink("Delete Event", "Delete", new { id = Model.EventId })</h4>

@@ -8,8 +8,10 @@ namespace WebApp2.Models
       public ApplicationUser()
       {
           this.Events = new HashSet<Event>();
+          this.Reservations = new HashSet<Reservation>();
       }
       public int ApplicationUserId { get; set; }
       public ICollection<Event> Events { get; set; }
+      public ICollection<Reservation> Reservations { get; set; }
     }
 }

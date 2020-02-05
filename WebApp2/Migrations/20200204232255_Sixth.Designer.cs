@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp2.Data;
 
 namespace WebApp2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200204232255_Sixth")]
+    partial class Sixth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,42 +207,42 @@ namespace WebApp2.Migrations
                             EventId = 1,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Ultra",
-                            Video = "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1;"
+                            Video = "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1"
                         },
                         new
                         {
                             EventId = 2,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Electric Zoo",
-                            Video = "https://www.youtube.com/embed/opXnPgW8FdY?autoplay=1;"
+                            Video = "https://www.youtube.com/embed/opXnPgW8FdY?autoplay=1"
                         },
                         new
                         {
                             EventId = 3,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Alpha",
-                            Video = "https://www.youtube.com/embed/bzlMCtirKRU?autoplay=1;"
+                            Video = "https://www.youtube.com/embed/bzlMCtirKRU?autoplay=1"
                         },
                         new
                         {
                             EventId = 4,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Omega",
-                            Video = "https://www.youtube.com/embed/PbW1FFarLrg?autoplay=1;"
+                            Video = "https://www.youtube.com/embed/bzlMCtirKRU?autoplay=1"
                         },
                         new
                         {
                             EventId = 5,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Coachella",
-                            Video = "https://www.youtube.com/embed/rD_iJSEBBmE?autoplay=1;"
+                            Video = "https://www.youtube.com/embed/rD_iJSEBBmE?autoplay=1"
                         },
                         new
                         {
                             EventId = 6,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Electric Daisy",
-                            Video = "https://www.youtube.com/embed/vALaiN71aVI?autoplay=1;"
+                            Video = "https://www.youtube.com/embed/vALaiN71aVI?autoplay=1"
                         });
                 });
 

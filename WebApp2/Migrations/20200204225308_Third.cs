@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApp2.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Third : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -161,8 +161,10 @@ namespace WebApp2.Migrations
                     EventId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     EventTitle = table.Column<string>(nullable: true),
-                    UserId = table.Column<int>(nullable: false),
-                    Date = table.Column<int>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Location = table.Column<string>(nullable: true),
+                    Dj = table.Column<string>(nullable: true),
+                    Video = table.Column<string>(nullable: true),
                     ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -184,15 +186,21 @@ namespace WebApp2.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     EventId = table.Column<int>(nullable: false),
                     EventTitle = table.Column<string>(nullable: true),
-                    Nickname = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: false),
                     DrinkRequest = table.Column<string>(nullable: true),
                     SongRequest = table.Column<string>(nullable: true),
-                    SpecialRequest = table.Column<string>(nullable: true)
+                    SpecialRequest = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservations", x => x.ReservationId);
+                    table.ForeignKey(
+                        name: "FK_Reservations_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Reservations_Events_EventId",
                         column: x => x.EventId,
@@ -229,15 +237,15 @@ namespace WebApp2.Migrations
 
             migrationBuilder.InsertData(
                 table: "Events",
-                columns: new[] { "EventId", "ApplicationUserId", "Date", "EventTitle", "UserId" },
+                columns: new[] { "EventId", "ApplicationUserId", "Date", "Dj", "EventTitle", "Location", "Video" },
                 values: new object[,]
                 {
-                    { 1, null, 0, "Matilda", 0 },
-                    { 2, null, 0, "Rexie", 0 },
-                    { 3, null, 0, "Matilda", 0 },
-                    { 4, null, 0, "Pip", 0 },
-                    { 5, null, 0, "Bartholomew", 0 },
-                    { 6, null, 0, "Bartholomew", 0 }
+                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Matilda", null, "https://www.youtube.com/embed/uPlmijjHRvw" },
+                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Rexie", null, "<iframe width='560' height='315' src='https://www.youtube.com/embed/opXnPgW8FdY' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>" },
+                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Ohm", null, "<iframe width='560' height='315' src='https://www.youtube.com/embed/bzlMCtirKRU' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>" },
+                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Pip", null, "<iframe width='560' height='315' src='https://www.youtube.com/embed/PbW1FFarLrg' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>" },
+                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Bartholomew", null, "<iframe width='560' height='315' src='https://www.youtube.com/embed/rD_iJSEBBmE' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>" },
+                    { 6, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Alpha", null, "<iframe width='560' height='315' src='https://www.youtube.com/embed/vALaiN71aVI' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -291,6 +299,11 @@ namespace WebApp2.Migrations
                 name: "IX_ReservationEvent_ReservationId",
                 table: "ReservationEvent",
                 column: "ReservationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_ApplicationUserId",
+                table: "Reservations",
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_EventId",

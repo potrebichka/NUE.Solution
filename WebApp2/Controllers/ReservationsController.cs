@@ -1,4 +1,3 @@
-  
 using Microsoft.AspNetCore.Mvc;
 using WebApp2.Models;
 using System.Collections.Generic;
@@ -38,6 +37,7 @@ namespace WebApp2.Controllers
     [HttpPost]
     public ActionResult Create(Reservation reservation)
     {
+      reservation.EventTitle = _db.Events.FirstOrDefault(ev => ev.EventId == reservation.EventId).EventTitle;
       _db.Reservations.Add(reservation);
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -45,6 +45,7 @@ namespace WebApp2.Controllers
 
     public ActionResult Details(int id)
     {
+       
         var thisReservation = _db.Reservations
             .Include(reservation => reservation.Event)
             
@@ -54,6 +55,7 @@ namespace WebApp2.Controllers
 
     public ActionResult Edit(int id)
     {
+      ViewBag.EventId = new SelectList(_db.Events, "EventId", "EventTitle");
       var thisReservation = _db.Reservations.FirstOrDefault(reservation => reservation.ReservationId == id);
       return View(thisReservation);
     }
@@ -93,31 +95,10 @@ namespace WebApp2.Controllers
 
       foreach (var reservation in allReservations)
       {
-      _db.Reservations.Remove(reservation);
+        _db.Reservations.Remove(reservation);
       }
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+        _db.SaveChanges();
+        return RedirectToAction("Index");
     }
-
-    public ActionResult AddEvent(int id)
-    {
-      var thisReservation = _db.Reservations.FirstOrDefault(reservations => reservations.ReservationId == id);
-      ViewBag.EventId = new SelectList(_db.Events, "EventId", "Description");
-      return View(thisReservation);
-    }
-   
-
-    [HttpPost]
-    public ActionResult AddEvent(Reservation reservation, int EventId)
-    {
-      if (EventId != 0)
-      {
-        _db.ReservationEvent.Add(new ReservationEvent() { EventId = EventId, ReservationId = reservation.ReservationId });
-      }
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
-
-
   }
 }

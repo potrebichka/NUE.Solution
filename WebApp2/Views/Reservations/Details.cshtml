@@ -1,24 +1,17 @@
-@* @{
+@{
   Layout = "_Layout";
 }
 
+
 @model WebApp2.Models.Reservation;
 
-<h1>Reservation Details for <b>@Html.DisplayFor(model => model.Nickname)</b></h1>
+<h1>RSVP Details for <b>@Html.DisplayFor(model => model.EventTitle)</b></h1>
 <br>
+<h3>Song Request: <b>@Html.DisplayFor(model => model.SongRequest)</b></h3>
+<h3>Drink Request: <b>@Html.DisplayFor(model => model.DrinkRequest)</b></h3>
+<h3>Special Request: <b>@Html.DisplayFor(model => model.SpecialRequest)</b></h3>
 
-@if(@Model.Events.Count == 0)
-{
-  <h3>This user does not contain any reservations</h3>
-}
-else
-{
-  <h3>Reservations under this user:</h3>
-  @foreach(var join in Model.Events)
-    {
-      <h3><b>@join.Event.EventTitle</b></h3>
-      
-    }
-  
-}
-<h4>@Html.ActionLink("Back to reservations", "Index")</h4> *@
+<br>
+<h4>@Html.ActionLink("Back to reservations", "Index")</h4>
+<h4>@Html.ActionLink("Edit Reservation", "Edit", new { id = Model.ReservationId })</h4>
+<h4>@Html.ActionLink("Delete Reservation", "Delete", new { id = Model.ReservationId })</h4>
