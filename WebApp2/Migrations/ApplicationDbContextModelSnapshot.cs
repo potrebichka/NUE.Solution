@@ -176,6 +176,30 @@ namespace WebApp2.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("WebApp2.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("EventId");
+
+                    b.Property<DateTime>("Time");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("WebApp2.Models.Event", b =>
                 {
                     b.Property<int>("EventId")
@@ -249,45 +273,23 @@ namespace WebApp2.Migrations
                     b.Property<int>("ReservationId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("DrinkRequest");
 
-                    b.Property<int>("EventId");
-
-                    b.Property<string>("EventTitle");
+                    b.Property<int?>("EventId");
 
                     b.Property<string>("SongRequest");
 
                     b.Property<string>("SpecialRequest");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("ReservationId");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
-                });
-
-            modelBuilder.Entity("WebApp2.Models.ReservationEvent", b =>
-                {
-                    b.Property<int>("ReservationEventId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("EventId");
-
-                    b.Property<int>("ReservationId");
-
-                    b.HasKey("ReservationEventId");
-
-                    b.HasIndex("EventId");
-
-                    b.HasIndex("ReservationId");
-
-                    b.ToTable("ReservationEvent");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -335,6 +337,18 @@ namespace WebApp2.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("WebApp2.Models.Comment", b =>
+                {
+                    b.HasOne("WebApp2.Models.Event", "Event")
+                        .WithMany("Comments")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WebApp2.Models.ApplicationUser", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("WebApp2.Models.Event", b =>
                 {
                     b.HasOne("WebApp2.Models.ApplicationUser")
@@ -344,27 +358,13 @@ namespace WebApp2.Migrations
 
             modelBuilder.Entity("WebApp2.Models.Reservation", b =>
                 {
-                    b.HasOne("WebApp2.Models.ApplicationUser")
+                    b.HasOne("WebApp2.Models.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId");
+
+                    b.HasOne("WebApp2.Models.ApplicationUser", "User")
                         .WithMany("Reservations")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("WebApp2.Models.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WebApp2.Models.ReservationEvent", b =>
-                {
-                    b.HasOne("WebApp2.Models.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WebApp2.Models.Reservation", "Reservation")
-                        .WithMany()
-                        .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

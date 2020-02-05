@@ -17,7 +17,7 @@ namespace WebApp2.Data
 
         public DbSet<Event> Events { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<ReservationEvent> ReservationEvent { get; set; }
+        public DbSet<Comment> Comments {get;set;}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
