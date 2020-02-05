@@ -10,10 +10,11 @@ namespace WebApp2.Models
         //     this.Events = new HashSet<ReservationEvent>();
         // }
 
-        public int EventId { get; set; }
-        public string EventTitle { get; set; }
+        //public int EventId { get; set; }
+        //public string EventTitle { get; set; }
         public int ReservationId { get; set; }
-        public int UserId {get; set; }
+        public ApplicationUser User {get;set;}
+        //public int UserId {get; set; }
         public string DrinkRequest { get; set; }
         public string SongRequest { get; set; }
         public string SpecialRequest { get; set; }
