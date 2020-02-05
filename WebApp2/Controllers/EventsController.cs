@@ -10,18 +10,22 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using WebApp2.Data;
+using System;
 
 namespace WebApp2.Controllers
 {
      public class EventsController : Controller
      {
-         private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public EventsController(ApplicationDbContext db)
+        public EventsController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,ApplicationDbContext db)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
             _db = db;
         }
-
         public ActionResult Index()
         {
             List<Event> model = _db.Events.ToList();
@@ -44,15 +48,17 @@ namespace WebApp2.Controllers
          public ActionResult Details(int id)
         {
             var thisEvent = _db.Events
+                .Include(ev => ev.Comments)
+                .ThenInclude(comment => comment.User)
                 .FirstOrDefault(musicEvent => musicEvent.EventId == id);
             return View(thisEvent);
         }
 
         public ActionResult Edit(int id)
         {
-        ViewBag.EventId = new SelectList(_db.Events, "EventId", "EventTitle");
-        var thisEvent = _db.Events.FirstOrDefault(musicEvent => musicEvent.EventId == id);
-        return View(thisEvent);
+            ViewBag.EventId = new SelectList(_db.Events, "EventId", "EventTitle");
+            var thisEvent = _db.Events.FirstOrDefault(musicEvent => musicEvent.EventId == id);
+            return View(thisEvent);
         }
 
         [HttpPost]
@@ -95,6 +101,19 @@ namespace WebApp2.Controllers
         }
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddComment(Comment comment, int Eventid)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            comment.User = currentUser;
+            comment.Time = DateTime.Now;
+            _db.Comments.Add(comment);
+            _db.SaveChanges();
+            //return View(comment);
+            return RedirectToAction("Details", new {id = Eventid});
         }
     }
 }

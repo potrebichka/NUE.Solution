@@ -9,8 +9,8 @@ using WebApp2.Data;
 namespace WebApp2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200204231301_Fifth")]
-    partial class Fifth
+    [Migration("20200205080215_AddComments")]
+    partial class AddComments
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -178,6 +178,30 @@ namespace WebApp2.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("WebApp2.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("EventId");
+
+                    b.Property<DateTime>("Time");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("WebApp2.Models.Event", b =>
                 {
                     b.Property<int>("EventId")
@@ -207,42 +231,42 @@ namespace WebApp2.Migrations
                             EventId = 1,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Ultra",
-                            Video = "https://www.youtube.com/embed/uPlmijjHRvw"
+                            Video = "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1;"
                         },
                         new
                         {
                             EventId = 2,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Electric Zoo",
-                            Video = "https://www.youtube.com/embed/opXnPgW8FdY"
+                            Video = "https://www.youtube.com/embed/opXnPgW8FdY?autoplay=1;"
                         },
                         new
                         {
                             EventId = 3,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Alpha",
-                            Video = "https://www.youtube.com/embed/bzlMCtirKRU"
+                            Video = "https://www.youtube.com/embed/bzlMCtirKRU?autoplay=1;"
                         },
                         new
                         {
                             EventId = 4,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Omega",
-                            Video = "https://www.youtube.com/embed/bzlMCtirKRU"
+                            Video = "https://www.youtube.com/embed/PbW1FFarLrg?autoplay=1;"
                         },
                         new
                         {
                             EventId = 5,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Coachella",
-                            Video = "https://www.youtube.com/embed/rD_iJSEBBmE"
+                            Video = "https://www.youtube.com/embed/rD_iJSEBBmE?autoplay=1;"
                         },
                         new
                         {
                             EventId = 6,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventTitle = "Electric Daisy",
-                            Video = "https://www.youtube.com/embed/vALaiN71aVI"
+                            Video = "https://www.youtube.com/embed/vALaiN71aVI?autoplay=1;"
                         });
                 });
 
@@ -251,45 +275,23 @@ namespace WebApp2.Migrations
                     b.Property<int>("ReservationId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("DrinkRequest");
 
-                    b.Property<int>("EventId");
-
-                    b.Property<string>("EventTitle");
+                    b.Property<int?>("EventId");
 
                     b.Property<string>("SongRequest");
 
                     b.Property<string>("SpecialRequest");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("ReservationId");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
-                });
-
-            modelBuilder.Entity("WebApp2.Models.ReservationEvent", b =>
-                {
-                    b.Property<int>("ReservationEventId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("EventId");
-
-                    b.Property<int>("ReservationId");
-
-                    b.HasKey("ReservationEventId");
-
-                    b.HasIndex("EventId");
-
-                    b.HasIndex("ReservationId");
-
-                    b.ToTable("ReservationEvent");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -337,6 +339,18 @@ namespace WebApp2.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("WebApp2.Models.Comment", b =>
+                {
+                    b.HasOne("WebApp2.Models.Event", "Event")
+                        .WithMany("Comments")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WebApp2.Models.ApplicationUser", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("WebApp2.Models.Event", b =>
                 {
                     b.HasOne("WebApp2.Models.ApplicationUser")
@@ -346,27 +360,13 @@ namespace WebApp2.Migrations
 
             modelBuilder.Entity("WebApp2.Models.Reservation", b =>
                 {
-                    b.HasOne("WebApp2.Models.ApplicationUser")
+                    b.HasOne("WebApp2.Models.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId");
+
+                    b.HasOne("WebApp2.Models.ApplicationUser", "User")
                         .WithMany("Reservations")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("WebApp2.Models.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WebApp2.Models.ReservationEvent", b =>
-                {
-                    b.HasOne("WebApp2.Models.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WebApp2.Models.Reservation", "Reservation")
-                        .WithMany()
-                        .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
