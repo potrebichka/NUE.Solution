@@ -8,8 +8,8 @@ dotnet user-secrets set "Authentication:Google:ClientSecret" "<client secret>"
 dotnet user-secrets set Authentication:Facebook:AppId <app-id>
 dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
 
-dotnet user-secrets set Authentication:Twitter:ConsumerAPIKey <Key>
-dotnet user-secrets set Authentication:Twitter:ConsumerSecret <Secret>
+dotnet user-secrets set Authentication:Twitter:ConsumerAPIKey nDZFaSZh4phRb50bzHmzCeHdB
+dotnet user-secrets set Authentication:Twitter:ConsumerSecret ae2hO6wKeJdNf08Fyi1RBeZoV7V49xqfCwIfo6VhKT6AUfHitg
 
 dotnet ef migrations add Initial (or Second, etc)
 dotnet ef database update
