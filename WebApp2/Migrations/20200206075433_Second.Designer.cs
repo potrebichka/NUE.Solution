@@ -9,8 +9,8 @@ using WebApp2.Data;
 namespace WebApp2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200205222628_Initial")]
-    partial class Initial
+    [Migration("20200206075433_Second")]
+    partial class Second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -186,6 +186,8 @@ namespace WebApp2.Migrations
                     b.Property<string>("Description");
 
                     b.Property<int>("EventId");
+
+                    b.Property<string>("Image");
 
                     b.Property<DateTime>("Time");
 

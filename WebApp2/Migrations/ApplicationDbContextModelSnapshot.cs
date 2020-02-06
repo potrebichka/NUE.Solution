@@ -185,6 +185,8 @@ namespace WebApp2.Migrations
 
                     b.Property<int>("EventId");
 
+                    b.Property<string>("Image");
+
                     b.Property<DateTime>("Time");
 
                     b.Property<string>("Title");

@@ -13,6 +13,6 @@ namespace WebApp2.Models
         public string Title {get;set;}
         public string Description {get;set;}
         public DateTime Time {get;set;}
-
+        public string Image {get;set;}
     }
 }
