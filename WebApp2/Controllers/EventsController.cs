@@ -51,6 +51,7 @@ namespace WebApp2.Controllers
                 .Include(ev => ev.Comments)
                 .ThenInclude(comment => comment.User)
                 .FirstOrDefault(musicEvent => musicEvent.EventId == id);
+            thisEvent.Comments =thisEvent.Comments.OrderBy(c => c.Time).ToList();
             return View(thisEvent);
         }
 
@@ -108,6 +109,18 @@ namespace WebApp2.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
+            var image = "http://nicesnippets.com/demo/man01.png";
+            var googleClaim = this.User.Claims.FirstOrDefault(c => c.Type == "urn:google:picture");
+            var facebookClaim = this.User.Claims.FirstOrDefault(c => c.Type == "Picture");
+            if ( googleClaim != null)
+            {
+                image = googleClaim.Value;
+            }
+            if ( facebookClaim != null)
+            {
+                image = facebookClaim.Value;
+            }
+            comment.Image = image;
             comment.User = currentUser;
             comment.Time = DateTime.Now;
             _db.Comments.Add(comment);
