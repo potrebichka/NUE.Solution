@@ -138,7 +138,7 @@ namespace WebApp2.Controllers
 
             //TwilioClient.Init(accountSid, authToken);
 
-            Reservation reservation = _db.Reservations.FirstOrDefault(res => res.ReservationId == Int32.Parse(phone.ReservationId));
+            Reservation reservation = _db.Reservations.Include(res => res.Event).FirstOrDefault(res => res.ReservationId == Int32.Parse(phone.ReservationId));
 
             string textMessage = $"Your reservation is confirmed.";
 
