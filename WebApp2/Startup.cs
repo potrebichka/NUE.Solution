@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using WebApp2.Models;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Twitter;
 
 namespace WebApp2
 {
@@ -83,8 +84,28 @@ namespace WebApp2
                 facebookOptions.SaveTokens = true;
                 facebookOptions.Events.OnCreatingTicket = (context) =>
                 {
+                    
                     var picture = $"https://graph.facebook.com/{context.Principal.FindFirstValue(ClaimTypes.NameIdentifier)}/picture?type=large";
                     context.Identity.AddClaim(new Claim("Picture", picture));
+                    return Task.CompletedTask;
+                };
+            })
+
+            .AddTwitter(twitterOptions =>
+            {
+                twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerAPIKey"];
+                twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+                twitterOptions.SaveTokens = true;
+                twitterOptions.RetrieveUserDetails = true;
+                twitterOptions.ClaimActions.MapJsonKey("display-name", "name");
+                twitterOptions.ClaimActions.MapJsonKey("id", "name");
+                twitterOptions.ClaimActions.MapJsonKey("profile-image-url", "profile_image_url_https");
+                twitterOptions.Events.OnCreatingTicket = (context) =>
+                {
+                    context.Options.ClaimActions.MapJsonKey("profile-image-url", "profile_image_url_https");
+                    context.Options.ClaimActions.MapJsonKey("twitter:name", context.AccessToken);
+                    context.Options.ClaimActions.MapJsonKey("twitter:secret", context.AccessTokenSecret);
+                    context.Options.ClaimActions.MapJsonKey("twitter:id", context.UserId);
                     return Task.CompletedTask;
                 };
             });

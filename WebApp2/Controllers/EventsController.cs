@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using WebApp2.Data;
 using System;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp2.Controllers
 {
@@ -107,11 +109,15 @@ namespace WebApp2.Controllers
         [HttpPost]
         public async Task<ActionResult> AddComment(Comment comment, int Eventid)
         {
+            // var authResult = await HttpContext.AuthenticateAsync();
+            // IDictionary<string, string> AuthProperties = authResult.Properties.Items;
+
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
             var image = "http://nicesnippets.com/demo/man01.png";
             var googleClaim = this.User.Claims.FirstOrDefault(c => c.Type == "urn:google:picture");
             var facebookClaim = this.User.Claims.FirstOrDefault(c => c.Type == "Picture");
+            var twitterClaim = this.User.Claims.FirstOrDefault(c => c.Type == "profile-image-url");
             if ( googleClaim != null)
             {
                 image = googleClaim.Value;
@@ -119,6 +125,11 @@ namespace WebApp2.Controllers
             if ( facebookClaim != null)
             {
                 image = facebookClaim.Value;
+            }
+
+            if ( twitterClaim != null)
+            {
+                image = twitterClaim.Value;
             }
             comment.Image = image;
             comment.User = currentUser;

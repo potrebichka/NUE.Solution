@@ -187,6 +187,37 @@ namespace WebApp2.Areas.Identity.Pages.Account
                             await _userManager.AddClaimAsync(user, claim);
                         }
 
+                        if (info.Principal.HasClaim(c => c.Type == "Picture"))
+                        {
+                            var claim = info.Principal.Claims.Where(x => x.Type == "Picture").FirstOrDefault();
+                            await _userManager.AddClaimAsync(user, claim);
+                        }
+
+                        if (info.Principal.HasClaim(c => c.Type == "profile-image-url"))
+                        {
+                            var claim = info.Principal.Claims.Where(x => x.Type == "profile-image-url").FirstOrDefault();
+                            await _userManager.AddClaimAsync(user, claim);
+                        }
+
+                        if (info.Principal.HasClaim(c => c.Type == "twitter:name"))
+                        {
+                            var claim = info.Principal.Claims.Where(x => x.Type == "twitter:name").FirstOrDefault();
+                            await _userManager.AddClaimAsync(user, claim);
+                        }
+
+                        if (info.Principal.HasClaim(c => c.Type == "twitter:token"))
+                        {
+                            var claim = info.Principal.Claims.Where(x => x.Type == "twitter:token").FirstOrDefault();
+                            await _userManager.AddClaimAsync(user, claim);
+                        }
+
+                        if (info.Principal.HasClaim(c => c.Type == "twitter:id"))
+                        {
+                            var claim = info.Principal.Claims.Where(x => x.Type == "twitter:id").FirstOrDefault();
+                            await _userManager.AddClaimAsync(user, claim);
+                        }
+
+
                         // Include the access token in the properties
                         var props = new AuthenticationProperties();
                         props.StoreTokens(info.AuthenticationTokens);

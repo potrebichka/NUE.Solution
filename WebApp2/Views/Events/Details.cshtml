@@ -3,6 +3,11 @@
 }
 
 @model WebApp2.Models.Event;
+@using Microsoft.AspNetCore.Http;
+@{
+    string currentUrl = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path;
+    string enc = System.Net.WebUtility.UrlEncode(currentUrl);
+}
 
 <div class="eventDetailDiv">
   <h1><b>@Html.DisplayFor(model => model.EventTitle) Details</b></h1>
@@ -16,6 +21,21 @@
 <h4>@Html.ActionLink("Back to event overview", "Index")</h4>
 <h4>@Html.ActionLink("Edit Event", "Edit", new { id = Model.EventId })</h4>
 <h4>@Html.ActionLink("Delete Event", "Delete", new { id = Model.EventId })</h4>
+
+<a href="https://www.facebook.com/sharer/sharer.php?u=@enc" 
+     target="_blank">
+    <img src="https://www.ucu.org.uk/media/8018/Facebook-share-button-short/Image/fbshare-button.png" style="width: 100px;">
+</a>
+
+<a href="https://twitter.com/intent/tweet?url=@enc" 
+   target="_blank" title="Tweet">
+   <img src="https://webstockreview.net/images/twitter-button-png-11.png" style="width: 140px;">
+</a>
+
+<a href="https://plus.google.com/share?url=@enc" 
+   target="_blank" title="Share on Google+">
+   <img src="https://lh3.googleusercontent.com/proxy/sIblBRpoh6C1NbVHMX_Lg84GZwKINxT5er-jRxjblP_d2vvPud42QFmGlR5pzqfpU27hDgKodL3sl4w1F7kYcEj9nKNtI3qy7UyCbx0XJgF_XagEdG5bUOp0xDrhLWIjBfm63TQdiiWsDmruK5ctQA" style="width: 140px;">
+</a>
 <hr>
 <h3>Comments:</h3>
 @if(Model.Comments.Count == 0)

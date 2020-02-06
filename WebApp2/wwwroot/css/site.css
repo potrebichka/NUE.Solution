@@ -356,5 +356,7 @@ button.accept-policy {
   } */
 }
 
-
+.iti__flag {
+  background-image: url("~/img/flags.png");
+}
 
