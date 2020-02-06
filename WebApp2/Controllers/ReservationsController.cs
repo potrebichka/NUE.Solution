@@ -136,17 +136,17 @@ namespace WebApp2.Controllers
             var accountSid = EnvironmentVariables.TWILIO_ACCOUNT_SID;
             var authToken = EnvironmentVariables.TWILIO_AUTH_TOKEN;
 
-            //TwilioClient.Init(accountSid, authToken);
+            TwilioClient.Init(accountSid, authToken);
 
-            Reservation reservation = _db.Reservations.FirstOrDefault(res => res.ReservationId == Int32.Parse(phone.ReservationId));
+            Reservation reservation = _db.Reservations.Include(res => res.Event).FirstOrDefault(res => res.ReservationId == Int32.Parse(phone.ReservationId));
 
-            string textMessage = $"Your reservation is confirmed.";
+            string textMessage = $"Your reservation at {reservation.Event.EventTitle} is confirmed!";
 
-            // var message = MessageResource.Create(
-            //     from: new Twilio.Types.PhoneNumber(EnvironmentVariables.TWILIO_NUMBER),
-            //     body: textMessage,
-            //     to: new Twilio.Types.PhoneNumber(phone.PhoneNumberRaw)
-            // );
+            var message = MessageResource.Create(
+                from: new Twilio.Types.PhoneNumber(EnvironmentVariables.TWILIO_NUMBER),
+                body: textMessage,
+                to: new Twilio.Types.PhoneNumber(phone.PhoneNumberRaw)
+            );
             return RedirectToAction("Details", new {id = phone.ReservationId});
           }
           ViewBag.Message = "The phone number do not exist.";

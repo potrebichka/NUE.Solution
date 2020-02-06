@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using WebApp2.Models;
-
 namespace WebApp2.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]

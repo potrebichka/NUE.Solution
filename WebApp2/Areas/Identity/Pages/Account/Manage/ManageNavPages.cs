@@ -1,6 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using WebApp2.Models;
 namespace WebApp2.Areas.Identity.Pages.Account.Manage
 {
     public static class ManageNavPages

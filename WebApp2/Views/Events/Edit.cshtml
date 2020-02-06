@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 @model WebApp2.Models.Event
-<div class="editEvent">
+<div class="containerDiv">
   <h3>Edit @Html.DisplayFor(model => model.EventTitle) Event</h3>
   <br>
   @if (User.Identity.IsAuthenticated)

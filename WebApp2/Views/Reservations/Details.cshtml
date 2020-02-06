@@ -3,7 +3,7 @@
 }
 @model WebApp2.Models.Reservation;
 
-<div class="rsvpDetailDiv">
+<div class="containerDiv">
   <h3>RSVP Details for <b>@Html.DisplayFor(model => model.Event.EventTitle)</b></h3>
 <br>
 @if (User.Identity.IsAuthenticated)

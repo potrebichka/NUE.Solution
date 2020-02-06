@@ -1,20 +1,19 @@
 @{
   Layout = "_Layout";
 }
-
 @model WebApp2.Models.PhoneNumberCheckViewModel;
-
-<h3>Enter phone number:</h3>
+<div class="containerDiv">
+  <h3>Enter phone number to send mobile text confirmation</h3>
+  <br>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
     <input type="hidden" name="ReservationId" value=@ViewBag.ReservationId>
     <div class="form-group">
-      @Html.Label("Enter a phone number")
-      @* <input type="tel" id="PhoneNumberRaw" placeholder="" name="PhoneNumberRaw"> *@
+     
       <select name="AreaCode" id="AreaCode" class="form-control tel-input">
-          <option data-countryCode="GB" value="44" Selected>UK (+44)</option>
           <option data-countryCode="US" value="1">USA (+1)</option>
+          <option data-countryCode="GB" value="44" Selected>UK (+44)</option>
           <optgroup label="Other countries">
             <option data-countryCode="DZ" value="213">Algeria (+213)</option>
             <option data-countryCode="AD" value="376">Andorra (+376)</option>
@@ -239,3 +238,4 @@
     </div>
     <input type="submit" value="Send message" class="btn btn-danger"/>
 }
+</div>
