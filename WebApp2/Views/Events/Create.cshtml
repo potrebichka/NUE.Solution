@@ -2,22 +2,32 @@
     Layout = "_Layout";
 }
 @model WebApp2.Models.Event
-@if (User.Identity.IsAuthenticated)
+<div class="containerDiv">
+  <h1>New Event</h1>
+  <br>
+  @if (User.Identity.IsAuthenticated)
 {
   @using (Html.BeginForm())
   {
-      @Html.LabelFor(model => model.EventTitle)
-      @Html.TextBoxFor(model => model.EventTitle)
-      @Html.LabelFor(model => model.Date)
-      @Html.EditorFor(model => model.Date, new { @type = "date" })
-      @Html.LabelFor(model => model.Location)
-      @Html.TextBoxFor(model => model.Location)
-      @Html.LabelFor(model => model.Dj)
-      @Html.TextBoxFor(model => model.Dj)
-      <input type="submit" value="Confirm Event" />
+      @Html.LabelFor(model => model.EventTitle)<br>
+      @Html.TextBoxFor(model => model.EventTitle)<br>
+      <br>
+      @Html.LabelFor(model => model.Date)<br>
+      @Html.EditorFor(model => model.Date, new { @type = "date" })<br>
+      <br>
+      @Html.LabelFor(model => model.Location)<br>
+      @Html.TextBoxFor(model => model.Location)<br>
+      <br>
+      @Html.LabelFor(model => model.Dj)<br>
+      @Html.TextBoxFor(model => model.Dj)<br>
+      <br>
+      <button type="submit" class="btn btn-primary">Confirm Event</button>
+      <br>
   }
 }
 else
 {
   <h3>Please log in or register in order to reserve.</h3>
 }
+<br>
+</div>

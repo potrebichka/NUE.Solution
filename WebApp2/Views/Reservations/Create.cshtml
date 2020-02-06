@@ -3,27 +3,27 @@
 }
 @model WebApp2.Models.Reservation
 
-<div class="rsvpDiv">
-  <h3>New RSVP</h3>
+<div class="containerDiv">
+  <h1>New RSVP</h1>
   <br>
   @if (User.Identity.IsAuthenticated)
 {
   @using (Html.BeginForm())
   {
-      
-      @Html.Label("Select Event")
-      @Html.DropDownList("EventId")
+      @Html.Label("Select Event")<br>
+      @Html.DropDownList("EventId")<br>
       <br>
-      @Html.Label("Song Request")
-      @Html.TextBoxFor(model => model.SongRequest)
+      @Html.Label("Song Request")<br>
+      @Html.TextBoxFor(model => model.SongRequest)<br>
       <br>
-      @Html.Label("Drink Request")
-      @Html.TextBoxFor(model => model.DrinkRequest)
+      @Html.Label("Drink Request")<br>
+      @Html.TextBoxFor(model => model.DrinkRequest)<br>
       <br>
-      @Html.Label("VIPsp Request")
-      @Html.TextBoxFor(model => model.SpecialRequest)
+      @Html.Label("VIPsp Request")<br>
+      @Html.TextBoxFor(model => model.SpecialRequest)<br>
       <br>
-      <input type="submit" value="Confirm RSVP" />
+      <button type="submit" class="btn btn-primary">Confirm RSVP</button>
+      <br>
   }
 }
 else
@@ -31,4 +31,5 @@ else
   <h3>Please log in or register in order to reserve.</h3>
   
 }
+<br>
 </div>

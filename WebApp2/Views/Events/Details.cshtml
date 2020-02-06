@@ -4,67 +4,26 @@
 
 @model WebApp2.Models.Event;
 
-<div class="eventDetailDiv">
+<div class="containerDiv">
   <h1><b>@Html.DisplayFor(model => model.EventTitle) Details</b></h1>
-<br>
-<h3>Date <b>@Html.DisplayFor(model => model.Date)</b></h3>
-<h3>Location <b>@Html.DisplayFor(model => model.Location)</b></h3>
-<h3>Dj <b>@Html.DisplayFor(model => model.Dj)</b></h3>
+  <br>
+  <h3>Date <b>@Html.DisplayFor(model => model.Date)</b></h3>
+  <h3>Location <b>@Html.DisplayFor(model => model.Location)</b></h3>
+  <h3>Dj <b>@Html.DisplayFor(model => model.Dj)</b></h3>
 
-<br>
-<h4>@Html.ActionLink("RSVP", "Create", "Reservations")</h4>
-<h4>@Html.ActionLink("Back to event overview", "Index")</h4>
-<h4>@Html.ActionLink("Edit Event", "Edit", new { id = Model.EventId })</h4>
-<h4>@Html.ActionLink("Delete Event", "Delete", new { id = Model.EventId })</h4>
-
-<h3>Comments:</h3>
-@if(Model.Comments.Count == 0)
-{
-      <div class="col-md-8">
-        <h3 class="text-right">No comments have been added.</h3>
-        @if (User.Identity.IsAuthenticated)
-        {
-        @using(Html.BeginForm("AddComment", "Events", new {EventId = Model.EventId})) 
-        {
-          <div class="row comment-box-main p-3 rounded-bottom">
-            <input type="hidden" value="@Model.EventId" name="EventId"/>
-            <div class="col-md-9 col-sm-9 col-9 pr-0 comment-box">
-              <input type="text" class="form-control" name="Description" id="Description" placeholder="comment ...." />
-            </div>
-            <div class="col-md-3 col-sm-2 col-2 pl-0 text-center send-btn">
-              <button class="btn btn-info" type="submit">Send</button>
-            </div>
-          </div>
-        }
-        }
-			</div>
-}
-else
-{
-    <div class="row">
-			<div class="col-md-12 offset-md-1 col-sm-6 offset-sm-3 col-12 comments-main pt-4 rounded">
-                
-                @foreach (Comment comment in Model.Comments)
-                {
-                    <ul class="p-0">
-                        <li>
-                            <div class="row comments">
-                                <div class="col-md-2 col-sm-2 col-3 text-center user-img">
-                                    <img id="profile-photo" src="@comment.Image" class="rounded-circle" />
-                                </div>
-                                <div class="col-md-9 col-sm-9 col-9 comment rounded mb-2">
-                                    <h4 class="m-0"><a href="#">@comment.User.UserName</a></h4>
-                                    <time class="text-white ml-3">@comment.Time</time>
-                                    <like></like>
-                                    <p class="mb-0 text-white">@comment.Description</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                }
-        @if (User.Identity.IsAuthenticated)
-        {
-        	@using(Html.BeginForm("AddComment", "Events", new {EventId = Model.EventId})) 
+  <br>
+  <h4>@Html.ActionLink("RSVP", "Create", "Reservations")</h4>
+  <h4>@Html.ActionLink("Back to event overview", "Index")</h4>
+  <h4>@Html.ActionLink("Edit Event", "Edit", new { id = Model.EventId })</h4>
+  <h4>@Html.ActionLink("Delete Event", "Delete", new { id = Model.EventId })</h4>
+  <hr>
+  @if(Model.Comments.Count == 0)
+  {
+        <div class="col-md-8">
+          
+          @if (User.Identity.IsAuthenticated)
+          {
+          @using(Html.BeginForm("AddComment", "Events", new {EventId = Model.EventId})) 
           {
             <div class="row comment-box-main p-3 rounded-bottom">
               <input type="hidden" value="@Model.EventId" name="EventId"/>
@@ -76,10 +35,52 @@ else
               </div>
             </div>
           }
-        }
-			
-			</div>
-    </div>
-}
-
+          }
+        </div>
+  }
+  else
+  {
+      <div class="row">
+        <div class="col-md-12 offset-md-1 col-sm-6 offset-sm-3 col-12 comments-main pt-4 rounded">
+                  
+                  @foreach (Comment comment in Model.Comments)
+                  {
+                      <ul class="p-0">
+                          <li>
+                              <div class="row comments">
+                                  <div class="col-md-2 col-sm-2 col-3 text-center user-img">
+                                      <img id="profile-photo" src="@comment.Image" class="rounded-circle" />
+                                  </div>
+                                  <div class="col-md-10 col-sm-9 col-9 comment rounded mb-2">
+                                      <h4 class="m-0"><a href="#">@comment.User.UserName</a></h4>
+                                      <time class="text-white ml-3">@comment.Time</time>
+                                      <like></like>
+                                      <br>
+                                      
+                                      <h3 class="mb-0 text-white">@comment.Description</h3>
+                                      
+                                  </div>
+                              </div>
+                          </li>
+                      </ul>
+                  }
+          @if (User.Identity.IsAuthenticated)
+          {
+            @using(Html.BeginForm("AddComment", "Events", new {EventId = Model.EventId})) 
+            {
+              <div class="row comment-box-main p-3 rounded-bottom">
+                <input type="hidden" value="@Model.EventId" name="EventId"/>
+                <div class="col-md-9 col-sm-9 col-9 pr-0 comment-box">
+                  <input type="text" class="form-control" name="Description" id="Description" placeholder="comment ...." />
+                </div>
+                <div class="col-md-3 col-sm-2 col-2 pl-0 text-center send-btn">
+                  <button class="btn btn-info" type="submit">Send</button>
+                </div>
+              </div>
+            }
+          }
+        
+        </div>
+      </div>
+  }
 </div>

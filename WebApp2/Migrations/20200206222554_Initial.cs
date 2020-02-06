@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApp2.Migrations
 {
-    public partial class Second : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -242,12 +242,12 @@ namespace WebApp2.Migrations
                 columns: new[] { "EventId", "ApplicationUserId", "Date", "Dj", "EventTitle", "Location", "Video" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2020, 2, 28, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Ultra", null, "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1" },
-                    { 2, null, new DateTime(2020, 3, 15, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Electric Zoo", null, "https://www.youtube.com/embed/opXnPgW8FdY?autoplay=1&mute=1;" },
-                    { 3, null, new DateTime(2020, 3, 30, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Alpha", null, "https://www.youtube.com/embed/bzlMCtirKRU?autoplay=1&mute=1;" },
-                    { 4, null, new DateTime(2020, 4, 10, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Omega", null, "https://www.youtube.com/embed/PbW1FFarLrg?autoplay=1&mute=1;" },
-                    { 5, null, new DateTime(2020, 4, 29, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Coachella", null, "https://www.youtube.com/embed/rD_iJSEBBmE?autoplay=1&mute=1;" },
-                    { 6, null, new DateTime(2020, 5, 20, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Electric Daisy", null, "https://www.youtube.com/embed/vALaiN71aVI?autoplay=1&mute=1;" }
+                    { 1, null, new DateTime(2020, 2, 28, 21, 0, 0, 0, DateTimeKind.Unspecified), "Ohm", "ULTRA", "Bayfront Park", "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1" },
+                    { 2, null, new DateTime(2020, 3, 15, 21, 0, 0, 0, DateTimeKind.Unspecified), "Magnetic Man", "ELECTRIC ZOO", "Randall’s Island", "https://www.youtube.com/embed/opXnPgW8FdY?autoplay=1&mute=1;" },
+                    { 3, null, new DateTime(2020, 3, 30, 21, 0, 0, 0, DateTimeKind.Unspecified), "ZHU", "ALPHA", "TMobile Stadium", "https://www.youtube.com/embed/bzlMCtirKRU?autoplay=1&mute=1;" },
+                    { 4, null, new DateTime(2020, 4, 10, 21, 0, 0, 0, DateTimeKind.Unspecified), "Kaskade", "OMEGA", "Seattle Arena", "https://www.youtube.com/embed/PbW1FFarLrg?autoplay=1&mute=1;" },
+                    { 5, null, new DateTime(2020, 4, 29, 21, 0, 0, 0, DateTimeKind.Unspecified), "Steve Aoki", "COACHELLA", "Empire Polo Club", "https://www.youtube.com/embed/rD_iJSEBBmE?autoplay=1&mute=1;" },
+                    { 6, null, new DateTime(2020, 5, 20, 21, 0, 0, 0, DateTimeKind.Unspecified), "Martin Garrix", "ELECTRIC DAISY", "Las Vegas Motor Speedway", "https://www.youtube.com/embed/vALaiN71aVI?autoplay=1&mute=1;" }
                 });
 
             migrationBuilder.CreateIndex(
