@@ -1,14 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<br>
-<div class="text-center">
-    @* <h1 class="display-4">Welcome</h1> *@
-    @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
-</div>
-<br>
+    @* <div class="homeIntro">
+        <h2><a class="introLink" asp-area="" asp-controller="Home" >Events 2020</a></h2>
+    </div> *@
+
     <div id="events">
-       
         @foreach(Event musicEvent in Model)
             {
             <div class="promo">
@@ -19,5 +16,4 @@
                
             </div>
             }
-        
     </div>

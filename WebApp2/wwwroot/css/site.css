@@ -1,10 +1,88 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿
+html {
+  height: 100%;
+  background:url(http://4k.com/wp-content/uploads/2015/04/maxresdefault-31.jpg)no-repeat center center fixed;
+  background-color: black;
+  background-size: cover;
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  background-color: transparent;
+  margin: 0 auto;
+  color: #d4d4d4;
+  text-align: center;
+}
 
 a.navbar-brand {
   white-space: normal;
-  text-align: center;
+  float: left;
   word-break: break-all;
+  z-index: 1;
+ 
+}
+.navbar-light .navbar-brand {
+  color: #d4d4d4;
+  
+}
+navbar-nav{
+  padding: 15px;
+}
+.container {
+  color: #d4d4d4;
+  text-align: center;
+  border-radius: 10px;
+  
+}
+
+.reservationsDiv, .rsvpDiv, .rsvpDetailDiv, .eventsDiv, .logInDiv, .registerDiv, .eventDetailDiv{
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+}
+
+div.row {
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.text-muted {
+  color: #d4d4d4;
+  z-index: 1;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #d4d4d4;
+  transition: 0.3s;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: blue;
+  font-size: 20px;
+}
+
+/* #events{
+  display: none;
+} */
+
+li {
+  z-index: 1;
+}
+.navContainer{
+  color: #d4d4d4;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 60px;;
+  position: inline;
+  border-radius: 10px;
+  padding: 10px;
+  padding-left: 15px;
+}
+
+.comments-main {
+  
+  background-color: black;
 }
 
 h1 {
@@ -12,7 +90,18 @@ h1 {
   letter-spacing: 5px;
   font-weight: bold;
   font-size: 500%;
- 
+  color: #d4d4d4;
+}
+h2{
+  transition: 0.3s;
+  color: #d4d4d4;
+  text-decoration: none;
+  margin: 30px;
+  z-index: 1;
+}
+h2:hover, h2:active, h2:link, h2:visited{
+  font-size: 50px;
+  text-decoration: none;
 }
 
 button {
@@ -23,6 +112,8 @@ button {
 
 #events{
   text-align: center;
+  padding: 20px;
+
 }
 
 .promo {
@@ -36,11 +127,21 @@ button {
 .about{
   background-color: rgba(0, 0, 0, 0.8);
   height: 100px;
-  margin-top: 450px;
+  margin-top: 200px;
   
   text-align: center;
 }
+
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+.footerContainer {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  position:fixed;
+  bottom:0px;
+  left:0px;
+}
 
 .footer-social-links{
   font-size: 25px;
@@ -105,33 +206,6 @@ button {
     background: black;
 }
 
-h2{
-  transition: 0.3s;
-  color: grey;
-  text-decoration: none;
-  margin: 30px;
-}
-h2:hover, h2:active, h2:link, h2:visited{
-  font-size: 50px;
-  text-decoration: none;
-  
-}
-
-html {
-  height: 100%;
-  background:url(http://4k.com/wp-content/uploads/2015/04/maxresdefault-31.jpg)no-repeat center center fixed;
-  background-color: black;
-  background-size: cover;
-  min-height: 100%;
-}
-
-body {
-  background-color: transparent;
-  margin: 0 auto;
-  
-}
-
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -159,17 +233,6 @@ button.accept-policy {
   line-height: inherit;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
 .footer {
   position: absolute;
   bottom: 0;
@@ -181,7 +244,13 @@ body {
 }
 
 .comments-main{
-  background: slategray;
+  background-color: transparent;
+  margin-left: 0;
+  text-align: center;
+  
+}
+.form-control{
+  margin-left: 75px;
 }
 .comment time, .comment:hover time,.icon-rocknroll, .like-count {
   -webkit-transition: .25s opacity linear;
@@ -243,7 +312,7 @@ body {
   opacity: 1;
 }
 .comment-box-main{
-  background: #CA1D5F;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 @media (min-width: 320px) and (max-width: 480px){
   .comments .comment h4 {
@@ -252,7 +321,7 @@ body {
   .comments .comment p{
     font-size: 11px;
   }
-  .comment-box-main .send-btn button{
-    margin-left: 5px;
-  }
+  /* .comment-box-main .send-btn button{
+    
+  } */
 }

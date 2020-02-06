@@ -2,21 +2,27 @@
     Layout = "_Layout";
 }
 @model WebApp2.Models.Reservation
-@if (User.Identity.IsAuthenticated)
-{
 
-  <h1>New RSVP</h1>
+<div class="rsvpDiv">
+  <h3>New RSVP</h3>
+  <br>
+  @if (User.Identity.IsAuthenticated)
+{
   @using (Html.BeginForm())
   {
       
       @Html.Label("Select Event")
       @Html.DropDownList("EventId")
+      <br>
       @Html.Label("Song Request")
       @Html.TextBoxFor(model => model.SongRequest)
-      @Html.Label("DrinkRequest")
+      <br>
+      @Html.Label("Drink Request")
       @Html.TextBoxFor(model => model.DrinkRequest)
-      @Html.Label("SpecialRequest")
+      <br>
+      @Html.Label("VIPsp Request")
       @Html.TextBoxFor(model => model.SpecialRequest)
+      <br>
       <input type="submit" value="Confirm RSVP" />
   }
 }
@@ -25,3 +31,4 @@ else
   <h3>Please log in or register in order to reserve.</h3>
   
 }
+</div>

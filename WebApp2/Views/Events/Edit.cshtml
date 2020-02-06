@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@model WebApp2.Models.Event
+
+<h2>Edit @Html.DisplayFor(model => model.EventTitle) Event</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.EventId)
+    @Html.HiddenFor(model => model.EventTitle)
+    
+    <br>
+    @Html.LabelFor(model => model.Date)
+    @Html.EditorFor(model => model.Date, new { @type = "date" })
+    <br>
+    @Html.LabelFor(model => model.Location)
+    @Html.TextBoxFor(model => model.Location)
+    <br>
+    @Html.LabelFor(model => model.Dj)
+    @Html.TextBoxFor(model => model.Dj)
+    <br>
+    <input type="submit" value="Save" />
+}
+<br>
+<p>@Html.ActionLink("Back to events", "Index")</p>

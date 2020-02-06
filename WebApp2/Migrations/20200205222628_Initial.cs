@@ -179,7 +179,7 @@ namespace WebApp2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comment",
+                name: "Comments",
                 columns: table => new
                 {
                     CommentId = table.Column<int>(nullable: false)
@@ -192,15 +192,15 @@ namespace WebApp2.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comment", x => x.CommentId);
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
-                        name: "FK_Comment_Events_EventId",
+                        name: "FK_Comments_Events_EventId",
                         column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "EventId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Comment_AspNetUsers_UserId",
+                        name: "FK_Comments_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -236,43 +236,17 @@ namespace WebApp2.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ReservationEvent",
-                columns: table => new
-                {
-                    ReservationEventId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ReservationId = table.Column<int>(nullable: false),
-                    EventId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReservationEvent", x => x.ReservationEventId);
-                    table.ForeignKey(
-                        name: "FK_ReservationEvent_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
-                        principalColumn: "EventId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ReservationEvent_Reservations_ReservationId",
-                        column: x => x.ReservationId,
-                        principalTable: "Reservations",
-                        principalColumn: "ReservationId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "Events",
                 columns: new[] { "EventId", "ApplicationUserId", "Date", "Dj", "EventTitle", "Location", "Video" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Ultra", null, "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1;" },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Electric Zoo", null, "https://www.youtube.com/embed/opXnPgW8FdY?autoplay=1;" },
-                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Alpha", null, "https://www.youtube.com/embed/bzlMCtirKRU?autoplay=1;" },
-                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Omega", null, "https://www.youtube.com/embed/PbW1FFarLrg?autoplay=1;" },
-                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Coachella", null, "https://www.youtube.com/embed/rD_iJSEBBmE?autoplay=1;" },
-                    { 6, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Electric Daisy", null, "https://www.youtube.com/embed/vALaiN71aVI?autoplay=1;" }
+                    { 1, null, new DateTime(2020, 2, 28, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Ultra", null, "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1" },
+                    { 2, null, new DateTime(2020, 3, 15, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Electric Zoo", null, "https://www.youtube.com/embed/opXnPgW8FdY?autoplay=1&mute=1;" },
+                    { 3, null, new DateTime(2020, 3, 30, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Alpha", null, "https://www.youtube.com/embed/bzlMCtirKRU?autoplay=1&mute=1;" },
+                    { 4, null, new DateTime(2020, 4, 10, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Omega", null, "https://www.youtube.com/embed/PbW1FFarLrg?autoplay=1&mute=1;" },
+                    { 5, null, new DateTime(2020, 4, 29, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Coachella", null, "https://www.youtube.com/embed/rD_iJSEBBmE?autoplay=1&mute=1;" },
+                    { 6, null, new DateTime(2020, 5, 20, 21, 0, 0, 0, DateTimeKind.Unspecified), null, "Electric Daisy", null, "https://www.youtube.com/embed/vALaiN71aVI?autoplay=1&mute=1;" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -313,29 +287,19 @@ namespace WebApp2.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_EventId",
-                table: "Comment",
+                name: "IX_Comments_EventId",
+                table: "Comments",
                 column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_UserId",
-                table: "Comment",
+                name: "IX_Comments_UserId",
+                table: "Comments",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_ApplicationUserId",
                 table: "Events",
                 column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ReservationEvent_EventId",
-                table: "ReservationEvent",
-                column: "EventId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ReservationEvent_ReservationId",
-                table: "ReservationEvent",
-                column: "ReservationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_EventId",
@@ -366,16 +330,13 @@ namespace WebApp2.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Comment");
-
-            migrationBuilder.DropTable(
-                name: "ReservationEvent");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Reservations");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Events");

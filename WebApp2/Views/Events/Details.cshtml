@@ -4,7 +4,8 @@
 
 @model WebApp2.Models.Event;
 
-<h1><b>@Html.DisplayFor(model => model.EventTitle) Details</b></h1>
+<div class="eventDetailDiv">
+  <h1><b>@Html.DisplayFor(model => model.EventTitle) Details</b></h1>
 <br>
 <h3>Date <b>@Html.DisplayFor(model => model.Date)</b></h3>
 <h3>Location <b>@Html.DisplayFor(model => model.Location)</b></h3>
@@ -16,10 +17,10 @@
 <h4>@Html.ActionLink("Edit Event", "Edit", new { id = Model.EventId })</h4>
 <h4>@Html.ActionLink("Delete Event", "Delete", new { id = Model.EventId })</h4>
 
-<h2>Comments:</h2>
+<h3>Comments:</h3>
 @if(Model.Comments.Count == 0)
 {
-      <div class="col-md-12 offset-md-1 col-sm-6 offset-sm-3 col-12 comments-main pt-4 rounded">
+      <div class="col-md-8">
         <h3>No comments have been added.</h3>
         @using(Html.BeginForm("AddComment", "Events", new {EventId = Model.EventId})) 
         {
@@ -67,14 +68,14 @@ else
           </article>
     }
     </section> *@
-    <div class="row mt-5">
+    <div class="row">
 			<div class="col-md-12 offset-md-1 col-sm-6 offset-sm-3 col-12 comments-main pt-4 rounded">
                 
                 @foreach (Comment comment in Model.Comments)
                 {
                     <ul class="p-0">
                         <li>
-                            <div class="row comments mb-2">
+                            <div class="row comments">
                                 <div class="col-md-2 col-sm-2 col-3 text-center user-img">
                                     <img id="profile-photo" src="http://nicesnippets.com/demo/man01.png" class="rounded-circle" />
                                 </div>
@@ -107,3 +108,5 @@ else
 			</div>
     </div>
 }
+
+</div>
