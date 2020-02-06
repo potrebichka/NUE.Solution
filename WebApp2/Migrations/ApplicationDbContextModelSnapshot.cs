@@ -230,78 +230,54 @@ namespace WebApp2.Migrations
                         {
                             EventId = 1,
                             Date = new DateTime(2020, 2, 28, 21, 0, 0, 0, DateTimeKind.Unspecified),
-<<<<<<< HEAD
                             Dj = "Ohm",
                             EventTitle = "ULTRA",
                             Location = "Bayfront Park",
-=======
-                            EventTitle = "Ultra",
->>>>>>> ninabranch
                             Video = "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1"
                         },
                         new
                         {
                             EventId = 2,
                             Date = new DateTime(2020, 3, 15, 21, 0, 0, 0, DateTimeKind.Unspecified),
-<<<<<<< HEAD
                             Dj = "Magnetic Man",
                             EventTitle = "ELECTRIC ZOO",
                             Location = "Randall’s Island",
-=======
-                            EventTitle = "Electric Zoo",
->>>>>>> ninabranch
                             Video = "https://www.youtube.com/embed/opXnPgW8FdY?autoplay=1&mute=1;"
                         },
                         new
                         {
                             EventId = 3,
                             Date = new DateTime(2020, 3, 30, 21, 0, 0, 0, DateTimeKind.Unspecified),
-<<<<<<< HEAD
                             Dj = "ZHU",
                             EventTitle = "ALPHA",
                             Location = "TMobile Stadium",
-=======
-                            EventTitle = "Alpha",
->>>>>>> ninabranch
                             Video = "https://www.youtube.com/embed/bzlMCtirKRU?autoplay=1&mute=1;"
                         },
                         new
                         {
                             EventId = 4,
                             Date = new DateTime(2020, 4, 10, 21, 0, 0, 0, DateTimeKind.Unspecified),
-<<<<<<< HEAD
                             Dj = "Kaskade",
                             EventTitle = "OMEGA",
                             Location = "Seattle Arena",
-=======
-                            EventTitle = "Omega",
->>>>>>> ninabranch
                             Video = "https://www.youtube.com/embed/PbW1FFarLrg?autoplay=1&mute=1;"
                         },
                         new
                         {
                             EventId = 5,
                             Date = new DateTime(2020, 4, 29, 21, 0, 0, 0, DateTimeKind.Unspecified),
-<<<<<<< HEAD
                             Dj = "Steve Aoki",
                             EventTitle = "COACHELLA",
                             Location = "Empire Polo Club",
-=======
-                            EventTitle = "Coachella",
->>>>>>> ninabranch
                             Video = "https://www.youtube.com/embed/rD_iJSEBBmE?autoplay=1&mute=1;"
                         },
                         new
                         {
                             EventId = 6,
                             Date = new DateTime(2020, 5, 20, 21, 0, 0, 0, DateTimeKind.Unspecified),
-<<<<<<< HEAD
                             Dj = "Martin Garrix",
                             EventTitle = "ELECTRIC DAISY",
                             Location = "Las Vegas Motor Speedway",
-=======
-                            EventTitle = "Electric Daisy",
->>>>>>> ninabranch
                             Video = "https://www.youtube.com/embed/vALaiN71aVI?autoplay=1&mute=1;"
                         });
                 });

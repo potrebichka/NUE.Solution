@@ -9,7 +9,7 @@ using WebApp2.Data;
 namespace WebApp2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200206194954_Initial")]
+    [Migration("20200206231133_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -232,42 +232,54 @@ namespace WebApp2.Migrations
                         {
                             EventId = 1,
                             Date = new DateTime(2020, 2, 28, 21, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventTitle = "Ultra",
+                            Dj = "Ohm",
+                            EventTitle = "ULTRA",
+                            Location = "Bayfront Park",
                             Video = "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1"
                         },
                         new
                         {
                             EventId = 2,
                             Date = new DateTime(2020, 3, 15, 21, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventTitle = "Electric Zoo",
+                            Dj = "Magnetic Man",
+                            EventTitle = "ELECTRIC ZOO",
+                            Location = "Randall’s Island",
                             Video = "https://www.youtube.com/embed/opXnPgW8FdY?autoplay=1&mute=1;"
                         },
                         new
                         {
                             EventId = 3,
                             Date = new DateTime(2020, 3, 30, 21, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventTitle = "Alpha",
+                            Dj = "ZHU",
+                            EventTitle = "ALPHA",
+                            Location = "TMobile Stadium",
                             Video = "https://www.youtube.com/embed/bzlMCtirKRU?autoplay=1&mute=1;"
                         },
                         new
                         {
                             EventId = 4,
                             Date = new DateTime(2020, 4, 10, 21, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventTitle = "Omega",
+                            Dj = "Kaskade",
+                            EventTitle = "OMEGA",
+                            Location = "Seattle Arena",
                             Video = "https://www.youtube.com/embed/PbW1FFarLrg?autoplay=1&mute=1;"
                         },
                         new
                         {
                             EventId = 5,
                             Date = new DateTime(2020, 4, 29, 21, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventTitle = "Coachella",
+                            Dj = "Steve Aoki",
+                            EventTitle = "COACHELLA",
+                            Location = "Empire Polo Club",
                             Video = "https://www.youtube.com/embed/rD_iJSEBBmE?autoplay=1&mute=1;"
                         },
                         new
                         {
                             EventId = 6,
                             Date = new DateTime(2020, 5, 20, 21, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventTitle = "Electric Daisy",
+                            Dj = "Martin Garrix",
+                            EventTitle = "ELECTRIC DAISY",
+                            Location = "Las Vegas Motor Speedway",
                             Video = "https://www.youtube.com/embed/vALaiN71aVI?autoplay=1&mute=1;"
                         });
                 });
