@@ -231,7 +231,7 @@
             <option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
           </optgroup>
         </select>
-        @* @Html.LabelFor(model => model.PhoneNumberRaw) *@
+        
         @Html.EditorFor(model => model.PhoneNumberRaw, new { htmlAttributes = new { @class = "tel-input form-control" } })
         <span asp-validation-for="PhoneNumberRaw" class="text-danger"></span>
         <span class="text-danger" id="validMessage">@ViewBag.Message</span>

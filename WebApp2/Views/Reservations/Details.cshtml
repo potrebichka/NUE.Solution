@@ -8,11 +8,6 @@
 <br>
 @if (User.Identity.IsAuthenticated)
   {
-    @* <h3><b>Event Info</b></h3>
-    <h3>Date <b>@Html.DisplayFor(model => model.Date)</b></h3>
-    <h3>Location <b>@Html.DisplayFor(model => model.Location)</b></h3>
-    <h3>Dj <b>@Html.DisplayFor(model => model.Dj)</b></h3>
-    <br> *@
     <h3><b>RSVP Requests</b></h3>
     <h3>Song Request: <b>@Html.DisplayFor(model => model.SongRequest)</b></h3>
     <h3>Drink Request: <b>@Html.DisplayFor(model => model.DrinkRequest)</b></h3>

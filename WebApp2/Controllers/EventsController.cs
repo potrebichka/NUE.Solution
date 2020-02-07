@@ -136,7 +136,6 @@ namespace WebApp2.Controllers
             comment.Time = DateTime.Now;
             _db.Comments.Add(comment);
             _db.SaveChanges();
-            //return View(comment);
             return RedirectToAction("Details", new {id = Eventid});
         }
     }

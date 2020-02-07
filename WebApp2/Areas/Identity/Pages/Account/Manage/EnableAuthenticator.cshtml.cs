@@ -80,7 +80,6 @@ namespace WebApp2.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            // Strip spaces and hypens
             var verificationCode = Input.Code.Replace(" ", string.Empty).Replace("-", string.Empty);
 
             var is2faTokenValid = await _userManager.VerifyTwoFactorTokenAsync(
@@ -113,7 +112,6 @@ namespace WebApp2.Areas.Identity.Pages.Account.Manage
 
         private async Task LoadSharedKeyAndQrCodeUriAsync(ApplicationUser user)
         {
-            // Load the authenticator key & QR code URI to display on the form
             var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
             if (string.IsNullOrEmpty(unformattedKey))
             {

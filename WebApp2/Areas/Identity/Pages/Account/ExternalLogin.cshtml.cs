@@ -55,7 +55,7 @@ namespace WebApp2.Areas.Identity.Pages.Account
 
         public IActionResult OnPost(string provider, string returnUrl = null)
         {
-            // Request a redirect to the external login provider.
+            
             var redirectUrl = Url.Page("./ExternalLogin", pageHandler: "Callback", values: new { returnUrl });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return new ChallengeResult(provider, properties);
@@ -81,15 +81,13 @@ namespace WebApp2.Areas.Identity.Pages.Account
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
-            // Sign in the user with this external login provider if the user already 
-            // has a login.
+            
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, 
                 info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
 
             if (result.Succeeded)
             {
-                // Store the access token and resign in so the token is included in
-                // in the cookie
+                
                 var user = await _userManager.FindByLoginAsync(info.LoginProvider, 
                     info.ProviderKey);
 
@@ -110,8 +108,7 @@ namespace WebApp2.Areas.Identity.Pages.Account
             }
             else
             {
-                // If the user does not have an account, then ask the user to create an 
-                // account.
+               
                 ReturnUrl = returnUrl;
                 LoginProvider = info.LoginProvider;
 
@@ -132,7 +129,7 @@ namespace WebApp2.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
-            // Get the information about the user from the external login provider
+            
             var info = await _signInManager.GetExternalLoginInfoAsync();
 
             if (info == null)
@@ -159,10 +156,7 @@ namespace WebApp2.Areas.Identity.Pages.Account
 
                     if (result.Succeeded)
                     {
-                        // If they exist, add claims to the user for:
-                        //    Given (first) name
-                        //    Locale
-                        //    Picture
+                       
                         if (info.Principal.HasClaim(c => c.Type == ClaimTypes.GivenName))
                         {
                             await _userManager.AddClaimAsync(user, 
@@ -211,7 +205,6 @@ namespace WebApp2.Areas.Identity.Pages.Account
                             await _userManager.AddClaimAsync(user, claim);
                         }
 
-                        // Include the access token in the properties
                         var props = new AuthenticationProperties();
                         props.StoreTokens(info.AuthenticationTokens);
                         props.IsPersistent = true;
