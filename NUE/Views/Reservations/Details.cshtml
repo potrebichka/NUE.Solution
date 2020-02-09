@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+@model NUE.Models.Reservation;
+
+<div class="containerDiv">
+  <h3>RSVP Details for <b>@Html.DisplayFor(model => model.Event.EventTitle)</b></h3>
+<br>
+@if (User.Identity.IsAuthenticated)
+  {
+    <h3><b>RSVP Requests</b></h3>
+    <h3>Song Request: <b>@Html.DisplayFor(model => model.SongRequest)</b></h3>
+    <h3>Drink Request: <b>@Html.DisplayFor(model => model.DrinkRequest)</b></h3>
+    <h3>Special Request: <b>@Html.DisplayFor(model => model.SpecialRequest)</b></h3>
+    <br>
+    <h4>@Html.ActionLink("Send reservation to phone", "SendMessage", new {id = Model.ReservationId})</h4>
+    <h4>@Html.ActionLink("Back to reservations", "Index")</h4>
+    <h4>@Html.ActionLink("Edit Reservation", "Edit", new { id = Model.ReservationId })</h4>
+    <h4>@Html.ActionLink("Delete Reservation", "Delete", new { id = Model.ReservationId })</h4>
+  }
+  else
+  {
+    <h3>Please log in or register in order to access.</h3>
+  }
+</div>

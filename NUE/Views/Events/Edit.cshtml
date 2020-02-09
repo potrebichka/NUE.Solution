@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+@model NUE.Models.Event
+<div class="containerDiv">
+  <h3>Edit @Html.DisplayFor(model => model.EventTitle) Event</h3>
+  <br>
+  @if (User.Identity.IsAuthenticated)
+  {
+    @using (Html.BeginForm())
+    {
+      @Html.HiddenFor(model => model.EventId)
+      @Html.HiddenFor(model => model.EventTitle)
+
+      <br>
+      @Html.LabelFor(model => model.Date)
+      @Html.EditorFor(model => model.Date, new { @type = "date" })
+      <br>
+      @Html.LabelFor(model => model.Location)
+      @Html.TextBoxFor(model => model.Location)
+      <br>
+      @Html.LabelFor(model => model.Dj)
+      @Html.TextBoxFor(model => model.Dj)
+      <br>
+      <input type="submit" value="Save" />
+    }
+  }
+  else
+  {
+    <h4>Please log in or register in order to edit.</h4>
+  }
+  <br>
+  <h4>@Html.ActionLink("Back to events", "Index")</h4>
+</div>

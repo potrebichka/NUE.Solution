@@ -1,0 +1,29 @@
+@{
+    Layout = "_Layout";
+}
+@using NUE.Models;
+@model List<NUE.Models.Reservation>;
+
+<div class="containerDiv">
+  <h1>Your RSVP'S</h1>
+  <br>
+  @if (User.Identity.IsAuthenticated)
+  {
+    @if (@Model.Count == 0)
+    {
+      <h3>No RSVPs have been added yet!</h3>
+    } 
+    @foreach (Reservation reservation in Model)
+    {
+      <h3><b>@Html.ActionLink($"{reservation.Event.EventTitle}", "Details", new { id = reservation.ReservationId })</b></h3>
+    }   
+
+  <br>
+  <h4>@Html.ActionLink("New RSVP", "Create")</h4>
+  <h4>@Html.ActionLink("Home", "Index", "Home")</h4> 
+  }
+  else
+  {
+    <h3>Please log in or register in order to access.</h3>
+  }
+</div>
