@@ -9,7 +9,7 @@ using WebApp2.Data;
 namespace WebApp2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200207021053_Initial")]
+    [Migration("20200207190521_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -235,7 +235,7 @@ namespace WebApp2.Migrations
                             Dj = "Ohm",
                             EventTitle = "ULTRA",
                             Location = "Bayfront Park",
-                            Video = "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1"
+                            Video = "https://www.youtube.com/embed/uPlmijjHRvw?autoplay=1&mute=1"
                         },
                         new
                         {
@@ -262,7 +262,7 @@ namespace WebApp2.Migrations
                             Dj = "Kaskade",
                             EventTitle = "OMEGA",
                             Location = "Seattle Arena",
-                            Video = "https://www.youtube.com/embed/PbW1FFarLrg?autoplay=1&mute=1;"
+                            Video = "https://www.youtube.com/embed/PbW1FFarLrg?autoplay=1;"
                         },
                         new
                         {
