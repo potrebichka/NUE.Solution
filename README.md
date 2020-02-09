@@ -16,8 +16,8 @@ The web app is built in C#, Html, CSS and Bootstrap. We used data from all the s
 * MySqlServer
 * Twitter app is not working with localhost names. Set name for localhost using instructions: https://bowerwebsolutions.com/how-to-edit-your-local-host-file-for-testing-web-sites/ . Save the name you selected (for example: www.myproject.com).
 * Google authentication setting (for more explanation use [reference](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/google-logins?view=aspnetcore-3.1)):
-- Create a google account if you haven't.
-- Navigate to [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/devconsole-project) and select CONFIGURE A PROJECT.
+** Create a google account if you haven't.
+** Navigate to [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/devconsole-project) and select CONFIGURE A PROJECT.
 - In the Configure your OAuth client dialog, select Web server.
 - In the Authorized redirect URIs text entry box, set the redirect URIs. If you want to use authentication via Twitter, include also redirect link selected name. For example, https://localhost:5001/signin-google , https://www.myproject.com/sigin-google .
 - Save the Client ID and Client Secret.
