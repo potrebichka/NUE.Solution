@@ -16,32 +16,32 @@ The web app is built in C#, Html, CSS and Bootstrap. We used data from all the s
 * MySqlServer
 * Twitter app is not working with localhost names. Set name for localhost using instructions: https://bowerwebsolutions.com/how-to-edit-your-local-host-file-for-testing-web-sites/ . Save the name you selected (for example: www.myproject.com).
 * Google authentication setting (for more explanation use [reference](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/google-logins?view=aspnetcore-3.1)):
-    ** Create a google account if you haven't.
-    ** Navigate to [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/devconsole-project) and select CONFIGURE A PROJECT.
-    ** In the Configure your OAuth client dialog, select Web server.
-    ** In the Authorized redirect URIs text entry box, set the redirect URIs. If you want to use authentication via Twitter, include also redirect link selected name. For example, https://localhost:5001/signin-google , https://www.myproject.com/sigin-google .
-    ** Save the Client ID and Client Secret.
+    * Create a google account if you haven't.
+    * Navigate to [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/devconsole-project) and select CONFIGURE A PROJECT.
+    * In the Configure your OAuth client dialog, select Web server.
+    * In the Authorized redirect URIs text entry box, set the redirect URIs. If you want to use authentication via Twitter, include also redirect link selected name. For example, https://localhost:5001/signin-google , https://www.myproject.com/sigin-google .
+    * Save the Client ID and Client Secret.
 * Facebook authentication setting (for more explanation use [reference](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/facebook-logins?view=aspnetcore-3.1)):
-    ** Navigate to the Facebook Developers app page and sign in. If you don't already have a Facebook account, use the Sign up for Facebook link on the login page to create one. Once you have a Facebook account, follow the instructions to register as a Facebook Developer.
-    ** From the My Apps menu select Create App to create a new App ID.
-    ** Fill out the form and tap the Create App ID button.
-    ** On the new App card, select Add a Product. On the Facebook Login card, click Set Up.
-    ** The Quickstart wizard launches with Choose a Platform as the first page. Bypass the wizard for now by clicking the FaceBook Login Settings link in the menu on the lower left.
-    ** You are presented with the Client OAuth Settings page:
-    ** Enter your development URI with /signin-facebook appended into the Valid OAuth Redirect URIs field (for example: https://localhost:5001/signin-facebook, https://www.myproject.com/signin-facebook). The Facebook authentication configured later in this tutorial will automatically handle requests at /signin-facebook route to implement the OAuth flow.
-    ** Click Save Changes.
-    ** Save your App ID and your App Secret.
+    * Navigate to the Facebook Developers app page and sign in. If you don't already have a Facebook account, use the Sign up for Facebook link on the login page to create one. Once you have a Facebook account, follow the instructions to register as a Facebook Developer.
+    * From the My Apps menu select Create App to create a new App ID.
+    * Fill out the form and tap the Create App ID button.
+    * On the new App card, select Add a Product. On the Facebook Login card, click Set Up.
+    * The Quickstart wizard launches with Choose a Platform as the first page. Bypass the wizard for now by clicking the FaceBook Login Settings link in the menu on the lower left.
+    * You are presented with the Client OAuth Settings page:
+    * Enter your development URI with /signin-facebook appended into the Valid OAuth Redirect URIs field (for example: https://localhost:5001/signin-facebook, https://www.myproject.com/signin-facebook). The Facebook authentication configured later in this tutorial will automatically handle requests at /signin-facebook route to implement the OAuth flow.
+    * Click Save Changes.
+    * Save your App ID and your App Secret.
 * Twitter authentication setting (for more explanation use [reference](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/twitter-logins?view=aspnetcore-3.1))
-    ** Navigate to https://apps.twitter.com/ and sign in. If you don't already have a Twitter account, use the Sign up now link to create one.
-    ** Select Create an app. Fill out the App name, Application description and public Website URI (this can be temporary until you register the domain name).
-    ** Enter your development URI with /signin-twitter appended into the Callback URLs field (for example: https://www.myproject.com/signin-twitter). 
-    ** In your project page go to Keys and Tokens tab. Save API key and API secret key.
+    * Navigate to https://apps.twitter.com/ and sign in. If you don't already have a Twitter account, use the Sign up now link to create one.
+    * Select Create an app. Fill out the App name, Application description and public Website URI (this can be temporary until you register the domain name).
+    * Enter your development URI with /signin-twitter appended into the Callback URLs field (for example: https://www.myproject.com/signin-twitter). 
+    * In your project page go to Keys and Tokens tab. Save API key and API secret key.
 * Twilio setting:
-    ** Go to https://www.twilio.com/ . 
-    ** Create account and activate free trial.
-    ** Create a new project.
-    ** Get free trial number. 
-    ** Save account SID and token.
+    * Go to https://www.twilio.com/ . 
+    * Create account and activate free trial.
+    * Create a new project.
+    * Get free trial number. 
+    * Save account SID and token.
 
 ## Setup/Installation Requirements
 
